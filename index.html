@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflex — Keyboard &amp; Mouse Macros for Windows</title>
+<meta name="description" content="Reflex is a fast, good-looking macro app for Windows. Build macros from steps or scripts, bind them to any key or mouse button, remap inputs and more. One-time purchase.">
+<meta property="og:title" content="Reflex — Keyboard & Mouse Macros for Windows">
+<meta property="og:description" content="Build macros from steps or scripts, bind them to any key or mouse button, and remap inputs. One-time purchase.">
+<meta property="og:image" content="assets/01_main_timeline.jpg">
+<meta name="theme-color" content="#0d0e11">
+<link rel="icon" href="assets/favicon.ico">
+<style>
+  :root {
+    --bg0: #0d0e11; --bg1: #14161a; --bg2: #1b1e23; --bg3: #23262c;
+    --line: #2a2e35; --text: #eef0f3; --text2: #b4bac3; --text3: #7d8590;
+    --accent: #44d62c; --accent-dark: #090e08;
+    --blue: #4c8dff; --amber: #f9a92e; --purple: #a88bfa;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg0); color: var(--text);
+    font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(13,14,17,.82); backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+  .brand img { width: 30px; height: 30px; }
+  .navlinks { display: flex; gap: 22px; margin-left: auto; color: var(--text2); font-size: 15px; }
+  .navlinks a:hover { color: var(--text); }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 12px;
+         font-weight: 600; font-size: 16px; transition: transform .12s ease, background .12s ease, box-shadow .12s ease; }
+  .btn-primary { background: var(--accent); color: var(--accent-dark); box-shadow: 0 8px 30px rgba(68,214,44,.25); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(68,214,44,.35); }
+  .btn-ghost { background: var(--bg2); color: var(--text); border: 1px solid var(--line); }
+  .btn-ghost:hover { background: var(--bg3); }
+  .btn-sm { padding: 9px 16px; font-size: 14px; border-radius: 10px; }
+  .bolt { width: 18px; height: 18px; }
+
+  /* Hero */
+  .hero { padding: 84px 0 40px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: -40% -10% auto; height: 620px; pointer-events: none;
+                  background: radial-gradient(closest-side, rgba(68,214,44,.16), transparent 70%); }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+          background: rgba(68,214,44,.1); color: var(--accent); font-size: 14px; font-weight: 600; border: 1px solid rgba(68,214,44,.25); }
+  .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.08; margin: 22px auto 18px; max-width: 880px; letter-spacing: -0.02em; }
+  .hero h1 span { color: var(--accent); }
+  .hero p.lead { color: var(--text2); font-size: clamp(17px, 2vw, 20px); max-width: 680px; margin: 0 auto 32px; }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .fine { color: var(--text3); font-size: 14px; margin-top: 14px; }
+  .shot { margin: 56px auto 0; max-width: 1080px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
+          box-shadow: 0 40px 120px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.02); position: relative; }
+
+  /* Sections */
+  section { padding: 90px 0; }
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin: 10px 0 12px; letter-spacing: -0.01em; }
+  .section-head p { color: var(--text2); margin: 0; font-size: 18px; }
+
+  /* Features */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--bg1); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .card h3 { margin: 14px 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--text2); font-size: 15px; }
+  .ico { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; }
+  .ico svg { width: 22px; height: 22px; }
+  .i-green { background: rgba(68,214,44,.13); color: var(--accent); }
+  .i-blue { background: rgba(76,141,255,.14); color: var(--blue); }
+  .i-amber { background: rgba(249,169,46,.14); color: var(--amber); }
+  .i-purple { background: rgba(168,139,250,.15); color: var(--purple); }
+
+  /* Showcase rows */
+  .row { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; margin-bottom: 80px; }
+  .row:last-child { margin-bottom: 0; }
+  .row.flip { grid-template-columns: 1.25fr 1fr; }
+  .row.flip .copy { order: 2; }
+  .copy h3 { font-size: clamp(24px, 3vw, 32px); margin: 8px 0 12px; letter-spacing: -0.01em; }
+  .copy p { color: var(--text2); font-size: 17px; margin: 0 0 16px; }
+  .copy ul { list-style: none; padding: 0; margin: 0; color: var(--text2); }
+  .copy li { padding-left: 26px; position: relative; margin: 8px 0; }
+  .copy li::before { content: ""; position: absolute; left: 0; top: 9px; width: 14px; height: 8px;
+                     border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+  .frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 24px 70px rgba(0,0,0,.5); }
+  code { background: var(--bg2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 6px; font-size: .92em; color: var(--text); }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+  .step { background: var(--bg1); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center;
+                  width: 34px; height: 34px; border-radius: 10px; background: var(--accent); color: var(--accent-dark); font-weight: 800; }
+  .step h3 { margin: 16px 0 6px; font-size: 18px; }
+  .step p { margin: 0; color: var(--text2); font-size: 15px; }
+
+  /* Pricing */
+  .price { max-width: 520px; margin: 0 auto; text-align: center; background: linear-gradient(180deg, var(--bg2), var(--bg1));
+           border: 1px solid rgba(68,214,44,.35); border-radius: 22px; padding: 40px 32px; box-shadow: 0 30px 90px rgba(68,214,44,.08); }
+  .price h3 { font-size: 26px; margin: 12px 0 4px; }
+  .price .sub { color: var(--text2); margin: 0 0 24px; }
+  .price ul { list-style: none; padding: 0; margin: 0 0 28px; text-align: left; display: inline-block; color: var(--text2); }
+  .price li { padding-left: 28px; position: relative; margin: 10px 0; }
+  .price li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 14px; height: 8px;
+                      border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+
+  /* FAQ */
+  .faq { max-width: 780px; margin: 0 auto; }
+  details { background: var(--bg1); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; margin-bottom: 12px; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--text3); font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--text2); margin: 12px 0 0; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding: 36px 0; color: var(--text3); font-size: 14px; }
+  footer .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  footer .links { margin-left: auto; display: flex; gap: 20px; }
+  footer a:hover { color: var(--text); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .grid, .steps { grid-template-columns: 1fr 1fr; }
+    .row, .row.flip { grid-template-columns: 1fr; gap: 24px; }
+    .row.flip .copy { order: 0; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .navlinks { display: none; }
+    nav .btn { margin-left: auto; }
+    .grid, .steps { grid-template-columns: 1fr; }
+    section { padding: 64px 0; }
+    .hero { padding-top: 56px; }
+    footer .links { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/icon.png" alt="">Reflex</a>
+    <div class="navlinks">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary btn-sm" href="https://ko-fi.com/reflexmacros/shop" target="_blank" rel="noopener">Get Reflex</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill">
+      <svg class="bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2 4 14h6.5L9.5 22 20 9.5h-6.6z"/></svg>
+      Keyboard &amp; mouse macros for Windows
+    </span>
+    <h1>Automate the boring clicks.<br><span>Play, work and create faster.</span></h1>
+    <p class="lead">Reflex lets you build macros from simple steps or Lua scripts, bind them to any key, combo or mouse button, and remap inputs on the fly — all in a clean, modern app.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://ko-fi.com/reflexmacros/shop" target="_blank" rel="noopener">
+        <svg class="bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2 4 14h6.5L9.5 22 20 9.5h-6.6z"/></svg>
+        Buy Reflex — $5 lifetime
+      </a>
+      <a class="btn btn-ghost" href="#features">See features</a>
+    </div>
+    <p class="fine">$5 one-time purchase · Windows 10 &amp; 11 · Lifetime updates</p>
+    <div class="shot"><img src="assets/01_main_timeline.jpg" alt="The Reflex app showing a macro built from steps, with keybind and playback settings"></div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Features</div>
+      <h2>Everything a macro tool should do</h2>
+      <p>Powerful enough for scripts, simple enough to set up in a minute.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></div>
+        <h3>Step-by-step editor</h3><p>Keystrokes, clicks, typing, mouse moves, scrolling and waits. Drag to reorder, no code needed.</p></div>
+      <div class="card"><div class="ico i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div>
+        <h3>Lua scripts</h3><p>Loops, conditions and randomness when you want full control, with live error checking.</p></div>
+      <div class="card"><div class="ico i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="6"/><path d="M12 6v4"/></svg></div>
+        <h3>Any key or mouse button</h3><p>Bind to keys, combos, all mouse buttons including side buttons, or the scroll wheel.</p></div>
+      <div class="card"><div class="ico i-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 14-5.3M20 4v5h-5M20 12a8 8 0 0 1-14 5.3M4 20v-5h5"/></svg></div>
+        <h3>Remap &amp; block</h3><p>Turn left click into right click, Mouse 4 into a key, or disable keys — only while you want.</p></div>
+      <div class="card"><div class="ico i-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Human-like timing</h3><p>Random delays, hold times and typing speed, so repeated actions don't look robotic.</p></div>
+      <div class="card"><div class="ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4" fill="currentColor"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Recorder</h3><p>Hit record, do it once, and Reflex turns it into a macro you can tweak.</p></div>
+      <div class="card"><div class="ico i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h6l2 2h10v10H3z"/></svg></div>
+        <h3>Folders &amp; drag-and-drop</h3><p>Organise dozens of macros into folders and arrange them however you like.</p></div>
+      <div class="card"><div class="ico i-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></div>
+        <h3>Premade macros &amp; sharing</h3><p>Start from ready-made macros, or share yours with a code your friends paste in.</p></div>
+      <div class="card"><div class="ico i-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 21h20zM12 10v5M12 18h.01"/></svg></div>
+        <h3>Safe by design</h3><p>Ctrl+Shift+F12 stops everything instantly and releases held keys. Macros can be limited to one app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="row">
+      <div class="copy">
+        <div class="eyebrow">Scripts</div>
+        <h3>Steps when you want simple. Code when you want power.</h3>
+        <p>Switch any macro to a script and write it in Lua. Reflex highlights mistakes as you type and shows output while it runs.</p>
+        <ul>
+          <li><code>press("e")</code>, <code>click()</code>, <code>type("gg")</code>, <code>sleep(50, 120)</code></li>
+          <li>React to what you press with <code>pressed()</code> and <code>is_down()</code></li>
+          <li>Convert any step macro to a script in one click</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="assets/07_script_editor.jpg" alt="The Reflex script editor with line numbers and an output panel" loading="lazy"></div>
+    </div>
+    <div class="row flip">
+      <div class="copy">
+        <div class="eyebrow">Remaps</div>
+        <h3>Change what your keys and buttons do</h3>
+        <p>Add Remap and Block steps to a toggle macro and press its key to switch them on and off.</p>
+        <ul>
+          <li>Swap mouse buttons, map side buttons to keys</li>
+          <li>Disable the Windows key while gaming</li>
+          <li>Clicks on Reflex itself are never remapped</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="assets/10_remap_steps.jpg" alt="Remap steps in Reflex: Left Click to Right Click, Q blocked, Mouse 4 to E" loading="lazy"></div>
+    </div>
+    <div class="row">
+      <div class="copy">
+        <div class="eyebrow">Premade macros</div>
+        <h3>Ready to go in seconds</h3>
+        <p>Auto clicker, auto walk, sprint lock, swap mouse buttons, typing helpers and more — add one, give it a key, done.</p>
+        <ul>
+          <li>Share any macro as a code</li>
+          <li>Paste a friend's code to add theirs</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="assets/13_community.jpg" alt="The Premade Macros window in Reflex" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="background:var(--bg1); border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Up and running in a minute</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Build a macro</h3><p>Add steps, record yourself, write a script, or start from a premade macro.</p></div>
+      <div class="step"><h3>Give it a keybind</h3><p>Any key, combo, mouse button or scroll direction. Choose once, toggle or hold.</p></div>
+      <div class="step"><h3>Press and go</h3><p>Your macro runs anywhere — or only in the app you choose. Everything saves automatically.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Pricing</div>
+      <h2>One price. Yours forever.</h2>
+      <p>No subscription. Buy once and keep getting updates.</p>
+    </div>
+    <div class="price">
+      <img src="assets/icon.png" alt="" style="width:64px;height:64px;margin:0 auto">
+      <h3>Reflex Lifetime</h3>
+      <div style="font-size:52px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin:6px 0 2px">$5</div>
+      <p class="sub">One-time purchase on Ko-fi</p>
+      <ul>
+        <li>Every feature, no limits</li>
+        <li>Lifetime updates</li>
+        <li>Premade macros &amp; share codes</li>
+        <li>Windows 10 &amp; 11</li>
+      </ul>
+      <div><a class="btn btn-primary" href="https://ko-fi.com/reflexmacros/shop" target="_blank" rel="noopener">
+        <svg class="bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2 4 14h6.5L9.5 22 20 9.5h-6.6z"/></svg>
+        Buy on Ko-fi</a></div>
+      <p class="fine">You'll be taken to the Reflex Macros shop on Ko-fi.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions</h2>
+    </div>
+    <div class="faq">
+      <details><summary>What do I need to run Reflex?</summary><p>A Windows 10 or 11 PC. Reflex is a single small app — nothing else to install.</p></details>
+      <details><summary>Is it a subscription?</summary><p>No. You pay once and keep it, including future updates. Reflex tells you when a new version is out.</p></details>
+      <details><summary>Will my macros be kept when I update?</summary><p>Yes. Your macros are saved on your PC separately from the app, so new versions pick them up automatically.</p></details>
+      <details><summary>Does it work in games?</summary><p>Reflex sends real keyboard and mouse input, so it works in most apps and games. For games that run as administrator, run Reflex as administrator too. Some online games don't allow macros — always check a game's rules before using them there.</p></details>
+      <details><summary>How do I get help?</summary><p>Message us through the Reflex Macros page on Ko-fi.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/icon.png" alt="" style="width:24px;height:24px">Reflex</a>
+    <span>© <span id="y">2026</span> Reflex Macros. All rights reserved.</span>
+    <div class="links">
+      <a href="https://ko-fi.com/reflexmacros/shop" target="_blank" rel="noopener">Shop</a>
+      <a href="https://ko-fi.com/reflexmacros" target="_blank" rel="noopener">Ko-fi</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
